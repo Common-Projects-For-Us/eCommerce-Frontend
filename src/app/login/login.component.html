@@ -45,7 +45,8 @@
               <div class="col-md-9">
                 <input type="text" class="form-control" formControlName="Email">
                 <div class="help-block text-danger">
-                  <div *ngIf="submitted && log.Email.errors">Email is required</div>
+                  <div *ngIf="submitted && log.Email.errors?.required">Email is required</div>
+                  <div *ngIf="submitted && log.Email.errors?.pattern">Please provide a valid email address</div>
                 </div>
               </div>
 
@@ -81,7 +82,7 @@
               <button type="submit" class="btn btn-primary  mb-4 justify-content-center"
                (click)="login()">Sign in</button>
               <div class="text-center">
-                <p>Not a member? <a href="#!">Register</a></p>
+                <p>Not a member? <a href="#">Register</a></p>
               </div>
             </div>
 
@@ -118,24 +119,25 @@
 
             <div class="mb-3 row">
               <div class="col-md-3">
-                <label>Name:</label>
+                <label>First Name:</label>
               </div>
               <div class="col-md-9">
-                <input type="text" class="form-control" formControlName="Name">
+                <input type="text" class="form-control" formControlName="FirstName">
                 <div class="help-block text-danger">
-                  <div *ngIf="submitted1 && regi.Name.errors">Name is required</div>
+                  <div *ngIf="submitted1 && regi.FirstName.errors">First Name is required</div>
                 </div>
               </div>
             </div>
 
             <div class="mb-3 row">
               <div class="col-md-3">
-                <label>User Name:</label>
+                <label>Last Name:</label>
               </div>
               <div class="col-md-9">
-                <input type="text" class="form-control" formControlName="UserName">
+                <input type="text" class="form-control" formControlName="LastName">
                 <div class="help-block text-danger">
-                  <div *ngIf="submitted1 && regi.UserName.errors">User Name is required</div>
+                  <div *ngIf="submitted1 && regi.LastName.errors">Last Name is required</div>
+
                 </div>
               </div>
 
@@ -148,7 +150,22 @@
               <div class="col-md-9">
                 <input type="text" class="form-control" formControlName="Email">
                 <div class="help-block text-danger">
-                  <div *ngIf="submitted1 && regi.Email.errors">Email is required</div>
+                  <div *ngIf="submitted1 && regi.Email.errors?.required">Email is required</div>
+                  <div *ngIf="submitted1 && regi.Email.errors?.pattern">Please provide a valid email address</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <div class="col-md-3">
+                <label>Phone:</label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="Phone">
+                <div class="help-block text-danger">
+                  <div *ngIf="submitted1 && regi.Phone.errors?.required">Phone is required</div>
+                  <div *ngIf="submitted1 && regi.Phone.errors?.pattern">Please provide a valid Phone Number</div>
+
                 </div>
               </div>
             </div>
@@ -172,7 +189,9 @@
               <div class="col-md-9">
                 <input type="text" class="form-control" formControlName="ConfirmPassword">
                 <div class="help-block text-danger">
-                  <div *ngIf="submitted1 && regi.ConfirmPassword.errors">Confirm Password is required</div>
+                  <div *ngIf="submitted1 && regi.ConfirmPassword.errors?.required">Confirm Password is required</div>
+                  <div *ngIf="submitted1 && (regi.ConfirmPassword.errors != null && regi.ConfirmPassword.errors.notEquivalent)">Password and Confirm Password must be match.</div>
+
                 </div>
               </div>
             </div>

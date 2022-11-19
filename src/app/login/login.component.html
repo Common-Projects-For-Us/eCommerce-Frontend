@@ -7,7 +7,7 @@
             class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form>
+          <form [formGroup]="loginform">
             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
               <p class="lead fw-normal mb-0 me-3">Sign in with</p>
               <button type="button" class="btn btn-primary btn-floating mx-1">
@@ -31,7 +31,12 @@
             <div class="form-outline mb-4">
               <label class="form-label" for="form3Example3">Email address</label>
               <input type="email" id="form3Example3" class="form-control form-control-lg"
-                placeholder="Enter a valid email address" />
+              formControlName="Email" />
+              <div class="help-block text-danger">
+                <div *ngIf="submitted && log.Email.errors?.required">Email is required</div>
+                <div *ngIf="submitted && log.Email.errors?.pattern">Please provide a valid email address</div>
+              </div>
+
 
             </div>
 
@@ -39,7 +44,10 @@
             <div class="form-outline mb-3">
               <label class="form-label" for="form3Example4">Password</label>
               <input type="password" id="form3Example4" class="form-control form-control-lg"
-                placeholder="Enter password" />
+              formControlName="password" />
+              <div class="help-block text-danger">
+                <div *ngIf="submitted && log.password.errors">Password is required</div>
+                </div>
 
             </div>
 
@@ -55,9 +63,9 @@
             </div>
 
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-primary btn-lg"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-              <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a 
+              <button type="button"  (click)="login()" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;" >Login</button>
+              <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a
                   class="link-danger" routerLink="/register">Register</a></p>
             </div>
 
